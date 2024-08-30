@@ -1,1 +1,4 @@
-console.log("Hello ts")
+//create array of notes
+
+const notes: any[]  = []
+export  = notes

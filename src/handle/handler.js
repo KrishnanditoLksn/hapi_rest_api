@@ -1,5 +1,6 @@
-const {nanoid} = require("nanoid");
-const notes = require("../notes");
+import { nanoid } from "nanoid";
+import { push, filter } from "../notes";
+
 const addNoteHandler = (request, h) => {
     //semua properti dari notes
     const {title, tags, body} = request.payload;
@@ -12,9 +13,9 @@ const addNoteHandler = (request, h) => {
     }
 
     //masukkan kedalam array notes
-    notes.push(newNote)
+    push(newNote)
 
-    const isSuccess = notes.filter((notes) => notes.id === id).length > 0
+    const isSuccess = filter((notes) => notes.id === id).length > 0
 
     if (isSuccess) {
         const response = h.response({
@@ -36,6 +37,8 @@ const addNoteHandler = (request, h) => {
 
     response.code(500)
     return response
+
+
 }
 
-module.exports = {addNoteHandler}
+export default {addNoteHandler}
